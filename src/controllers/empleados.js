@@ -13,8 +13,8 @@ const  getEmpleados =  async(req = request, res = response) => {
         });
     } catch (error) {
         res.status(400).json({
-            msg: 'Error',
-            error
+            msg: error,
+            data: []
         });
     }
 

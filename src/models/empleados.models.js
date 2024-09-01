@@ -1,5 +1,10 @@
 import axios from 'axios';
-const url = "https://66c78f59732bf1b79fa6e8c7.mockapi.io/api/v1/";
+import dotenv from 'dotenv';
+dotenv.config();
+const url = process.env.URL_MOCKAPI;
+
+
+
 const tipo = "empleados";
 const getEmpleadosModel = async(lastname) => {
    return new Promise((resolve, reject) => {
@@ -17,8 +22,6 @@ const getEmpleadosModel = async(lastname) => {
     })
    });
 
-       
-   
 }
 export {
     getEmpleadosModel
