@@ -1,6 +1,8 @@
-import express from 'express';
-const app = express();
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-    });
-export default app;
+import dotenv from 'dotenv';
+import Server from './models/server.js';
+
+dotenv.config();
+
+const servidor = new Server();
+
+servidor.listen();
