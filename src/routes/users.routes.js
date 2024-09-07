@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { getUsersByLastname, getUsers } from '../controllers/users.controller.js'
+import { getUsersById, getUsers, getUsersPagination } from '../controllers/users.controller.js'
 
 const rutas = Router()
-
+rutas.get('/paginacion', getUsersPagination)
 rutas.get('/', getUsers)
-rutas.get('/:lastname', getUsersByLastname)
+rutas.get('/:id', getUsersById)
 
 export default rutas

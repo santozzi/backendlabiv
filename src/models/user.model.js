@@ -1,33 +1,20 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
+import { paginador } from '../utils/paginador.js'
 dotenv.config()
-
-const url = process.env.URL_API
 const tipo = 'users'
+const url = process.env.URL_API + tipo
+const host =
+  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/paginacion'
 
-const getUsersByLastnameModel = async (lastname) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .get(url + tipo, {
-        params: {
-          lastname
-        }
-      })
-      .then((response) => {
-        const { data } = response
-        resolve(data)
-      })
-      .catch((error) => {
-        reject(error.message)
-      })
-  })
-}
-const getUsersModel = async () => {
-  return new Promise((resolve, reject) => {
-    console.log(url + tipo)
+const getUsersByIdModel = async (id) => {
+  console.log('ide de model', id)
 
-    axios
-      .get(url + tipo)
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: `${url}/${id}`
+    })
       .then((response) => {
         const { data } = response
 
@@ -38,4 +25,20 @@ const getUsersModel = async () => {
       })
   })
 }
-export { getUsersModel, getUsersByLastnameModel }
+const getUsersModel = async (page = 0, limit = 10) => {
+  return new Promise((resolve, reject) => {
+    console.log(url)
+
+    axios
+      .get(url)
+      .then((response) => {
+        const result = paginador(host, response.data, page, limit)
+        resolve(result)
+      })
+      .catch((error) => {
+        reject(error.message)
+      })
+  })
+}
+
+export { getUsersModel, getUsersByIdModel }
