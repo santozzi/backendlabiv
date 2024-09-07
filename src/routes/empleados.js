@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { getEmpleados, getEmpleado } from '../controllers/empleados.js';
+import { Router } from 'express'
+import { getEmpleados, getEmpleado } from '../controllers/empleados.js'
 
-const rutas = Router();
+const rutas = Router()
 
-rutas.get('/', getEmpleados);
-rutas.get('/:idEmpleado', getEmpleado); 
+rutas.get('/', getEmpleados)
+rutas.get('/:idEmpleado', getEmpleado)
 
-export default rutas;
+export default rutas

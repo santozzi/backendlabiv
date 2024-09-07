@@ -1,6 +1,0 @@
-/*
-aguante taiereeeeeeeee
-un dia el mago paseando en el bosque la vista cruzo
-con la mas dulce mirada que en toda su vida jamas conocio
-maggie
-*/

@@ -1,7 +1,5 @@
+import Server from './models/server.js'
 
-import Server from './models/server.js';
+const servidor = new Server()
 
-
-const servidor = new Server();
-
-servidor.listen();
+servidor.listen()

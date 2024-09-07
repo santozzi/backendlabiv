@@ -4,7 +4,9 @@
   "main": "/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch ./src/app.js"
+    "dev": "node --watch ./src/app.js",
+    "lint":"npx standard",
+    "lint:fix":"npx standard --fix"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "husky": "^9.1.5",
+    "standard": "^17.1.0"
   },
   "type": "module"
 }

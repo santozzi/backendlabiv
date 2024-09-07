@@ -1,38 +1,38 @@
-import express from 'express';
-import peliculas from '../routes/peliculas.js';
-import empleados from '../routes/empleados.js';
-import cors from 'cors';
+import express from 'express'
+import users from './users.routes'
+import cors from 'cors'
+import dotenv from 'dotenv'
+dotenv.config()
 
 class Server {
-    constructor(){
-            this.app = express();
-            this.port = process.env.PORT;
-            this.middleware();
-            this.cors();
-            this.rutas();
-    }
+  constructor () {
+    this.app = express()
+    this.port = process.env.PORT || 3001
+    this.middleware()
+    this.cors()
+    this.rutas()
+  }
 
-    cors(){
-        this.app.use(cors());
-    }
-    middleware(){
-        this.app.use("/", express.static('public'));
-        
-    }
+  cors () {
+    this.app.use(cors())
+  }
 
-    rutas(){
-        this.app.use('/api/v1/peliculas', peliculas); 
-        this.app.use('/api/v1/empleados', empleados); 
-        // this.app.use('*', (req, res) => {
-        //     res.status(404).send('page not found');
-        // });
-    }
+  middleware () {
+    this.app.use('/', express.static('public'))
+  }
 
-    listen(){
-        this.app.listen(this.port, () => {
-            console.log(`Server running on port ${this.port}`);
-        });
-    }
+  rutas () {
+    this.app.use('/api/v1/users', users)
+    this.app.use('*', (req, res) => {
+        res.status(404).send('page not found');
+    });
+  }
+
+  listen () {
+    this.app.listen(this.port, () => {
+      console.log(`Server running on port ${this.port}, host: ${process.env.HOST}:${this.port}`)
+    })
+  }
 }
 
-export default Server;
+export default Server
