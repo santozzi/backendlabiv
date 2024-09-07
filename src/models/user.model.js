@@ -7,11 +7,12 @@ const tipo = 'users'
 
 const getUsersByLastnameModel = async (lastname) => {
   return new Promise((resolve, reject) => {
-    axios.get(url + tipo, {
-      params: {
-        lastname
-      }
-    })
+    axios
+      .get(url + tipo, {
+        params: {
+          lastname
+        }
+      })
       .then((response) => {
         const { data } = response
         resolve(data)
@@ -22,18 +23,21 @@ const getUsersByLastnameModel = async (lastname) => {
   })
 }
 const getUsersModel = async () => {
-    return new Promise((resolve, reject) => {
-      axios.get(url + tipo)
-        .then((response) => {
-          const { data } = response
-          resolve(data)
-        })
-        .catch((error) => {
-          reject(error.message)
-        })
-    })
-  }
-export {
-    getUsersModel,
-    getUsersByLastnameModel
+  return new Promise((resolve, reject) => {
+    console.log(url + tipo);
+    
+    axios
+      .get(url + tipo)
+      .then((response) => {
+     
+        
+        const { data } = response
+              
+        resolve(data)
+      })
+      .catch((error) => {
+        reject(error.message)
+      })
+  })
 }
+export { getUsersModel, getUsersByLastnameModel }

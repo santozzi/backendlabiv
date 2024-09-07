@@ -1,5 +1,5 @@
 import express from 'express'
-import users from './users.routes'
+import users from '../routes/users.routes.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -18,19 +18,21 @@ class Server {
   }
 
   middleware () {
-    this.app.use('/', express.static('public'))
+    // this.app.use('/', express.static('public'))
   }
 
   rutas () {
     this.app.use('/api/v1/users', users)
     this.app.use('*', (req, res) => {
-        res.status(404).send('page not found');
-    });
+      res.status(404).send('page not found')
+    })
   }
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`Server running on port ${this.port}, host: ${process.env.HOST}:${this.port}`)
+      console.log(
+        `Server running on port ${this.port}, host: http://${process.env.HOST}:${this.port}`
+      )
     })
   }
 }
