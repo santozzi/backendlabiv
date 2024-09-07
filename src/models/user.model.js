@@ -24,15 +24,13 @@ const getUsersByLastnameModel = async (lastname) => {
 }
 const getUsersModel = async () => {
   return new Promise((resolve, reject) => {
-    console.log(url + tipo);
-    
+    console.log(url + tipo)
+
     axios
       .get(url + tipo)
       .then((response) => {
-     
-        
         const { data } = response
-              
+
         resolve(data)
       })
       .catch((error) => {
