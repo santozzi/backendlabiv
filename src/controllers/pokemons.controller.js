@@ -1,12 +1,12 @@
 import { request, response } from 'express'
-import { getUsersByIdModel, getUsersModel } from '../models/user.model.js'
+import { getPokemonByIdModel, getPokemonsModel } from '../models/pokemons.model.js'
 
-const getUsersById = async (req = request, res = response) => {
+const getPokemonById = async (req = request, res = response) => {
   const { id } = req.params
   console.log('este es el id', id)
 
   try {
-    const data = await getUsersByIdModel(id)
+    const data = await getPokemonByIdModel(id)
     res.status(200).json({
       msg: 'Ok',
       data
@@ -19,14 +19,16 @@ const getUsersById = async (req = request, res = response) => {
   }
 }
 
-const getUsers = async (req = request, res = response) => {
+const getPokemons = async (req = request, res = response) => {
   // TODO: verificar si el body es un usuario
 
   try {
-    const data = await getUsersModel()
+    const data = await getPokemonsModel()
+    console.log('estoy en el controller', data.data);
+    
     res.status(200).json({
       msg: 'Ok',
-      data
+      data:data.data
     })
   } catch (error) {
     res.status(400).json({
@@ -35,7 +37,7 @@ const getUsers = async (req = request, res = response) => {
     })
   }
 }
-const getUsersPagination = async (req = request, res = response) => {
+/* const getUsersPagination = async (req = request, res = response) => {
   // TODO: verificar si el body es un usuario
   const { page, limit } = req.query
   console.log('estoy con la query:', page, ' ', limit)
@@ -51,7 +53,7 @@ const getUsersPagination = async (req = request, res = response) => {
       msg: error,
       data: []
     })
-  }
+  } 
 }
-
-export { getUsersById, getUsers, getUsersPagination }
+*/
+export { getPokemonById, getPokemons }
