@@ -1,5 +1,5 @@
 import express from 'express'
-import users from '../routes/users.routes.js'
+import pokemons from '../routes/pokemons.routes.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -22,7 +22,7 @@ class Server {
   }
 
   rutas () {
-    this.app.use('/api/v1/users', users)
+    this.app.use('/api/v1/pokemons', pokemons)
     this.app.use('*', (req, res) => {
       res.status(404).send('page not found')
     })
