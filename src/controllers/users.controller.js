@@ -1,12 +1,12 @@
 import { request, response } from 'express'
-import { getPokemonByIdModel, getPokemonsModel } from '../models/pokemons.model.js'
+import { getUserByIdModel, getUsersModel } from '../models/users.model.js'
 
-const getPokemonById = async (req = request, res = response) => {
+const getUserById = async (req = request, res = response) => {
   const { id } = req.params
   console.log('este es el id', id)
 
   try {
-    const data = await getPokemonByIdModel(id)
+    const data = await getUserByIdModel(id)
     res.status(200).json({
       msg: 'Ok',
       data
@@ -19,11 +19,11 @@ const getPokemonById = async (req = request, res = response) => {
   }
 }
 
-const getPokemons = async (req = request, res = response) => {
+const getUsers = async (req = request, res = response) => {
   // TODO: verificar si el body es un usuario
 
   try {
-    const data = await getPokemonsModel()
+    const data = await getUsersModel()
     console.log('estoy en el controller', data.data);
     
     res.status(200).json({
@@ -56,4 +56,4 @@ const getPokemons = async (req = request, res = response) => {
   } 
 }
 */
-export { getPokemonById, getPokemons }
+export { getUserById, getUsers }
