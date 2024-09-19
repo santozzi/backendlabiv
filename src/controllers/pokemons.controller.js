@@ -24,11 +24,11 @@ const getPokemons = async (req = request, res = response) => {
 
   try {
     const data = await getPokemonsModel()
-    console.log('estoy en el controller', data.data);
-    
+    console.log('estoy en el controller', data.data)
+
     res.status(200).json({
       msg: 'Ok',
-      data:data.data
+      data: data.data
     })
   } catch (error) {
     res.status(400).json({
@@ -53,7 +53,7 @@ const getPokemons = async (req = request, res = response) => {
       msg: error,
       data: []
     })
-  } 
+  }
 }
 */
 export { getPokemonById, getPokemons }

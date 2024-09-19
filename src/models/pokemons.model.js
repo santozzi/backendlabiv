@@ -1,10 +1,10 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
-//import { paginador } from '../utils/paginador.js'
+// import { paginador } from '../utils/paginador.js'
 dotenv.config()
 const tipo = 'pokemon'
 const url = process.env.URL_API + tipo
-//const host =  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/paginacion'
+// const host =  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/paginacion'
 
 const getPokemonByIdModel = async (id) => {
   console.log('ide de model', id)
@@ -26,13 +26,12 @@ const getPokemonByIdModel = async (id) => {
 }
 const getPokemonsModel = async () => {
   return new Promise((resolve, reject) => {
- 
-    console.log('estoy en el model ',url);
-    
+    console.log('estoy en el model ', url)
+
     axios
       .get(url)
       .then((response) => {
-        //const result = paginador(host, response.data, page, limit)
+        // const result = paginador(host, response.data, page, limit)
         resolve(response)
       })
       .catch((error) => {
