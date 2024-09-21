@@ -24,7 +24,7 @@ const getUserByIdModel = async (id) => {
       })
   })
 }
-const getUsersModel = async (page, limit) => {
+
 const getUsersModel = async (page, limit) => {
   return new Promise((resolve, reject) => {
     console.log('estoy en el model ', url)

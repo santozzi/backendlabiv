@@ -37,24 +37,5 @@ const getUsers = async (req = request, res = response) => {
     })
   }
 }
-const getUsersPagination = async (req = request, res = response) => {
-  // TODO: verificar si el body es un usuario
-  const { page, limit } = req.query
 
-  console.log('estoy con la query:', page, ' ', limit)
-
-  try {
-    const data = await getUsersModel(page, limit)
-    res.status(200).json({
-      msg: 'Ok',
-      data
-    })
-  } catch (error) {
-    res.status(400).json({
-      msg: error,
-      data: []
-    })
-  }
-}
-
-export { getUserById, getUsers, getUsersPagination }
+export { getUserById, getUsers }
