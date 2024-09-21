@@ -1,9 +1,7 @@
-const paginador = (url, data, page = 0, limit = 50) => {
+const paginador = (url, data, page = 0, limit = 10) => {
   return new Promise((resolve, reject) => {
     const count = data.length
     const pages = Math.ceil(count / limit)
-    console.log('estoy en el paginador', page, limit)
-
     if (page === 0) {
       const info = {
         count,
@@ -16,6 +14,7 @@ const paginador = (url, data, page = 0, limit = 50) => {
         info,
         datafiltrada: data
       }
+      // TODO: refactorizar para que no se repita el resolve
       resolve(result)
     } else {
       const info = {

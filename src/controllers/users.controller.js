@@ -24,9 +24,7 @@ const getUsers = async (req = request, res = response) => {
 
   try {
     const { page, limit } = req.query
-
     const data = await getUsersModel(page, limit)
-    console.log('estoy en el controller', data)
 
     res.status(200).json({
       msg: 'Ok',
