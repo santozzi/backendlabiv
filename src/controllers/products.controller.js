@@ -5,11 +5,12 @@ import { getProductByIdModel, getProductsModel } from '../models/products.model.
 const getProducts = async (req = request, res = response) => {
   // verificar si logro traer los productos
   try {
-    const data = await getProductsModel()
+    const { page, limit } = req.query
+    const data = await getProductsModel(page, limit)
 
     res.status(200).json({
       msg: 'Ok',
-      data: data.data
+      data
     })
   } catch (error) {
     res.status(400).json({

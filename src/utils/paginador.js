@@ -12,7 +12,7 @@ const paginador = (url, data, page = 0, limit = 10) => {
       }
       const result = {
         info,
-        datafiltrada: data
+        results: data
       }
       // TODO: refactorizar para que no se repita el resolve
       resolve(result)
@@ -29,10 +29,10 @@ const paginador = (url, data, page = 0, limit = 10) => {
       if (page === pages) {
         fin = count - 1
       }
-      const datafiltrada = data.slice(inicio, fin)
+      const results = data.slice(inicio, fin)
       const result = {
         info,
-        datafiltrada
+        results
       }
       resolve(result)
     }
