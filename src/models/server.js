@@ -1,5 +1,6 @@
 import express from 'express'
 import users from '../routes/users.routes.js'
+import products from '../routes/products.routes.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -23,6 +24,8 @@ class Server {
 
   rutas () {
     this.app.use('/api/v1/users', users)
+    this.app.use('/api/v1/products', products)
+    // aca van las otras rutas
     this.app.use('*', (req, res) => {
       res.status(404).send('page not found')
     })
