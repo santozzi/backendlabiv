@@ -1,16 +1,22 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
+import { paginador } from '../utils/paginador.js'
 
 dotenv.config()
 const tipo = 'products'
 const url = process.env.URL_API + tipo
 
-const getProductsModel = async () => {
+const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+
+const getProductsModel = async (page, limit) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url)
-      .then((response) => {
-        resolve(response)
+      .then(async (response) => {
+        console.log('page: ', page, ' limit: ', limit, response.data)
+
+        const result = await paginador(host, response.data, page, limit)
+        resolve(result)
       })
       .catch((error) => {
         reject(error.message)
