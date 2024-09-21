@@ -1,10 +1,10 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
-// import { paginador } from '../utils/paginador.js'
+import { paginador } from '../utils/paginador.js'
 dotenv.config()
 const tipo = 'users'
 const url = process.env.URL_API + tipo
-// const host =  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/paginacion'
+const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
 
 const getUserByIdModel = async (id) => {
   console.log('ide de model', id)
@@ -24,15 +24,15 @@ const getUserByIdModel = async (id) => {
       })
   })
 }
-const getUsersModel = async () => {
+const getUsersModel = async (page, limit) => {
   return new Promise((resolve, reject) => {
     console.log('estoy en el model ', url)
 
     axios
       .get(url)
-      .then((response) => {
-        // const result = paginador(host, response.data, page, limit)
-        resolve(response)
+      .then(async (response) => {
+        const result = await paginador(host, response.data, page, limit)
+        resolve(result)
       })
       .catch((error) => {
         reject(error.message)
