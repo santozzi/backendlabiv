@@ -5,8 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch ./src/app.js",
-    "lint":"npx standard",
-    "lint:fix":"npx standard --fix"
+    "lint": "npx standard",
+    "lint:fix": "npx standard --fix",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,7 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "husky": "^9.1.5",
+    "husky": "^9.1.6",
     "standard": "^17.1.0"
   },
   "type": "module"
