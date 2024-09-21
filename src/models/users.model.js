@@ -27,13 +27,9 @@ const getUserByIdModel = async (id) => {
 
 const getUsersModel = async (page, limit) => {
   return new Promise((resolve, reject) => {
-    console.log('estoy en el model ', url)
-
     axios
       .get(url)
       .then(async (response) => {
-        console.log('page: ', page, ' limit: ', limit, response.data)
-
         const result = await paginador(host, response.data, page, limit)
         resolve(result)
       })

@@ -2,40 +2,43 @@ const paginador = (url, data, page = 0, limit = 10) => {
   return new Promise((resolve, reject) => {
     const count = data.length
     const pages = Math.ceil(count / limit)
+    let info
+    let result
+
     if (page === 0) {
-      const info = {
+      info = {
         count,
         pages: 1,
-        // TODO: verificar que la pagina no sea la primera para que funcione el prev y que no sea la ultima para que funcione el next
         next: null,
         prev: null
       }
-      const result = {
+      result = {
         info,
         results: data
       }
-      // TODO: refactorizar para que no se repita el resolve
-      resolve(result)
     } else {
-      const info = {
+      info = {
         count,
         pages,
-        // TODO: verificar que la pagina no sea la primera para que funcione el prev y que no sea la ultima para que funcione el next
-        next: `${url}?page=${Number(page) + 1}&limit=${limit}`,
-        prev: `${url}?page=${page - 1}&limit=${limit}`
+        next:
+          pages !== page
+            ? `${url}?page=${Number(page) + 1}&limit=${limit}`
+            : null,
+        prev: page > 1 ? `${url}?page=${page - 1}&limit=${limit}` : null
       }
+
       const inicio = (page - 1) * limit
       let fin = page * limit
       if (page === pages) {
         fin = count - 1
       }
       const results = data.slice(inicio, fin)
-      const result = {
+      result = {
         info,
         results
       }
-      resolve(result)
     }
+    resolve(result)
   })
 }
 export { paginador }
