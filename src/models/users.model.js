@@ -27,7 +27,6 @@ const getUserByIdModel = async (id) => {
 
 const getUsersModel = async (page, limit) => {
   return new Promise((resolve, reject) => {
-    
     axios
       .get(url)
       .then(async (response) => {
