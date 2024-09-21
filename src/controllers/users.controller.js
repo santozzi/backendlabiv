@@ -23,12 +23,14 @@ const getUsers = async (req = request, res = response) => {
   // TODO: verificar si el body es un usuario
 
   try {
-    const data = await getUsersModel()
-    console.log('estoy en el controller', data.data)
+    const { page, limit } = req.query
+
+    const data = await getUsersModel(page, limit)
+    console.log('estoy en el controller', data)
 
     res.status(200).json({
       msg: 'Ok',
-      data: data.data
+      data
     })
   } catch (error) {
     res.status(400).json({
@@ -37,9 +39,10 @@ const getUsers = async (req = request, res = response) => {
     })
   }
 }
-/* const getUsersPagination = async (req = request, res = response) => {
+const getUsersPagination = async (req = request, res = response) => {
   // TODO: verificar si el body es un usuario
   const { page, limit } = req.query
+
   console.log('estoy con la query:', page, ' ', limit)
 
   try {
@@ -55,5 +58,5 @@ const getUsers = async (req = request, res = response) => {
     })
   }
 }
-*/
-export { getUserById, getUsers }
+
+export { getUserById, getUsers, getUsersPagination }
