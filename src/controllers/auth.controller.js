@@ -9,8 +9,8 @@ const getAuthLogin = async (req = request, res = response) => {
       data
     })
   } catch (error) {
-    res.status(400).json({
-      msg: error.message,
+    res.status(401).json({
+      msg: error,
       data: []
     })
   }
