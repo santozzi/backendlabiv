@@ -1,5 +1,5 @@
 import { request, response } from 'express'
-import { getCategoryByNameModel, getCategoriesModel } from '../models/categories.model.js'
+import { getCategoryByIdModel, getCategoriesModel } from '../models/categories.model.js'
 
 // devuelve un listado de categorias, sin filtrar
 const getCategories = async (req = request, res = response) => {
@@ -20,10 +20,10 @@ const getCategories = async (req = request, res = response) => {
 }
 
 // devuelve una categoria por nombre
-const getCategoryByName = async (req = request, res = response) => {
+const getCategoryById = async (req = request, res = response) => {
   const { name } = req.params
   try {
-    const data = await getCategoryByNameModel(name)
+    const data = await getCategoryByIdModel(name)
 
     res.status(200).json({
       msg: 'Ok',
@@ -37,4 +37,4 @@ const getCategoryByName = async (req = request, res = response) => {
   }
 }
 
-export { getCategories, getCategoryByName }
+export { getCategories, getCategoryById }

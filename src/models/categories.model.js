@@ -24,11 +24,11 @@ const getCategoriesModel = async (page, limit) => {
   })
 }
 
-const getCategoryByNameModel = async (name) => {
+const getCategoryByIdModel = async (id) => {
   return new Promise((resolve, reject) => {
     axios({
       methods: 'get',
-      url: `${url}/${name}`
+      url: `${url}/${id}`
     })
       .then((response) => {
         const { data } = response
@@ -40,4 +40,4 @@ const getCategoryByNameModel = async (name) => {
   })
 }
 
-export { getCategoriesModel, getCategoryByNameModel }
+export { getCategoriesModel, getCategoryByIdModel }
