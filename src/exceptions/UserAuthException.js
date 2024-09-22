@@ -1,7 +1,7 @@
 class UserAuthException extends Error {
-  constructor(message) {
-    super(message);
-    this.name = 'UserAuthException';
+  constructor (message) {
+    super(message)
+    this.name = 'UserAuthException'
   }
 }
-export { UserAuthException };
+export { UserAuthException }

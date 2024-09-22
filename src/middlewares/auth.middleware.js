@@ -5,7 +5,7 @@ const authentication = async (req = request, res = response, next) => {
   try {
     const { authorization } = req.headers
     if (!authorization) {
-        throw new UserAuthException('El usuario no está autenticado')
+      throw new UserAuthException('El usuario no está autenticado')
     }
     const token = authorization.split(' ')[1]
 
