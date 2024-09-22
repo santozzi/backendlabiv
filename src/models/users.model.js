@@ -30,13 +30,12 @@ const getUsersModel = async (page, limit) => {
     axios
       .get(url)
       .then(async (response) => {
-        try{
-           const result = await paginador(host, response.data, page, limit)
-           resolve(result)
-        }catch(error){
+        try {
+          const result = await paginador(host, response.data, page, limit)
+          resolve(result)
+        } catch (error) {
           reject(error)
         }
-      
       })
       .catch((error) => {
         reject(error.message)

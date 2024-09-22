@@ -1,4 +1,4 @@
-import { InvalidNumberPageException, } from '../exceptions/InvalidNumberPageException.js'
+import { InvalidNumberPageException } from '../exceptions/InvalidNumberPageException.js'
 import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
 const paginador = (url, data, page, limit = 10) => {
   return new Promise((resolve, reject) => {
@@ -7,12 +7,11 @@ const paginador = (url, data, page, limit = 10) => {
     let info
     let result
 
-   
-   if(isNaN(limit)){
+    if (isNaN(limit)) {
       reject(new InvalidNumberLimitException('El límite debe ser un número'))
-   }else if(limit <= 0){
+    } else if (limit <= 0) {
       reject(new InvalidNumberLimitException('El límite debe ser mayor que 0'))
-   }else if (page === undefined || page === null) {
+    } else if (page === undefined || page === null) {
       info = {
         count,
         pages: 1,
@@ -23,11 +22,11 @@ const paginador = (url, data, page, limit = 10) => {
         info,
         results: data
       }
-    }else if (isNaN(page)){
+    } else if (isNaN(page)) {
       reject(new InvalidNumberPageException('La página debe ser un número'))
-    } else if(page <= 0){
+    } else if (page <= 0) {
       reject(new InvalidNumberPageException('La página debe ser mayor que 0'))
-    } else if (page > pages){
+    } else if (page > pages) {
       reject(new InvalidNumberPageException('La página no puede ser mayor que el número de páginas'))
     } else {
       info = {

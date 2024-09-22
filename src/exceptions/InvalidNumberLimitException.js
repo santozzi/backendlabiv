@@ -1,5 +1,5 @@
 class InvalidNumberLimitException extends Error {
-  constructor(message) {
+  constructor (message) {
     super(message)
     this.name = 'InvalidNumberLimitException'
   }
