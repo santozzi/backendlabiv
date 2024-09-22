@@ -12,7 +12,7 @@ const getUserById = async (req = request, res = response) => {
     })
   } catch (error) {
     res.status(400).json({
-      msg: error,
+      msg: error.message,
       data: []
     })
   }
@@ -31,7 +31,7 @@ const getUsers = async (req = request, res = response) => {
     })
   } catch (error) {
     res.status(400).json({
-      msg: error,
+      msg: error.message,
       data: []
     })
   }
