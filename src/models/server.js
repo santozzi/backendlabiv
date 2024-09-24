@@ -2,6 +2,7 @@ import express from 'express'
 import users from '../routes/users.routes.js'
 import products from '../routes/products.routes.js'
 import categories from '../routes/categories.routes.js'
+import carts from '../routes/carts.routes.js'
 import auth from '../routes/auth.routes.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
@@ -30,6 +31,7 @@ class Server {
     this.app.use('/api/v1/products', products)
     this.app.use('/api/v1/categories', categories)
     this.app.use('/api/v1/auth', auth)
+    this.app.use('/api/v1/carts', carts)
     // aca van las otras rutas
     this.app.use('*', (req, res) => {
       res.status(404).send('page not found')
