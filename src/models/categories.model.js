@@ -27,7 +27,7 @@ const getCategoriesModel = async (page, limit) => {
 const getCategoryByIdModel = async (id) => {
   return new Promise((resolve, reject) => {
     axios({
-      methods: 'get',
+      method: 'get',
       url: `${url}/${id}`
     })
       .then((response) => {
