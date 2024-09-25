@@ -67,9 +67,11 @@ Gestión del carrito de compras de los usuarios.
 
 | Método  | Endpoint                | Descripción                                        |
 |---------|-------------------------|----------------------------------------------------|
-| `GET`   | `/carrito`               | Obtener el contenido del carrito de compras actual.|
-| `POST`  | `/carrito`               | Agregar un producto al carrito de compras.         |
-| `DELETE`| `/carrito/{id}`          | Eliminar un producto del carrito.                  |
+| `GET`   | `/carrito`               | Obtener la lista de todos los carritos.|
+| `GET`   | `/carrito/{id}`              | Obtener el contenido del carrito de compras actual.|
+| `GET`   | `/carrito/?page=1&limit=10`      | Obtiene la lista de todos los carritos por cantidad de páginas según limite (paginación)|
+| `GET`   | `/carrito/?userId=1`      | Obtiene la lista de todos los carritos pertenecientes al userId brindado|
+
 
 ## Tecnologías
 
