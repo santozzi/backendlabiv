@@ -4,8 +4,8 @@ import { getCartByIdModel, getCartsModel } from '../models/carts.model.js'
 // devuelve un listado de carros, sin filtrar
 const getCarts = async (req = request, res = response) => {
   try {
-    const { page, limit } = req.query
-    const data = await getCartsModel(page, limit)
+    const { userId, page, limit } = req.query
+    const data = await getCartsModel(userId, page, limit)
 
     res.status(200).json({
       msg: 'Ok',
