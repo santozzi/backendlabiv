@@ -15,12 +15,18 @@ const paginador = (url, data, page, limit = 10) => {
       info = {
         count,
         pages: 1,
-        next: null,
+        next: `${url}?page=2&limit=${limit}`,
         prev: null
       }
+      const inicio = 0
+      let fin = 1 * limit
+      if (pages === 1) {
+        fin = count - 1
+      }
+      const results = data.slice(inicio, fin)
       result = {
         info,
-        results: data
+        results
       }
     } else if (isNaN(page)) {
       reject(new InvalidNumberPageException('La página debe ser un número'))

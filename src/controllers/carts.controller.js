@@ -1,5 +1,8 @@
 import { request, response } from 'express'
 import { getCartByIdModel, getCartsModel } from '../models/carts.model.js'
+import { InvalidUserIdException } from '../exceptions/InvalidUserIdException.js'
+import { InvalidNumberPageException } from '../exceptions/InvalidNumberPageException.js'
+import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
 
 // devuelve un listado de carros, sin filtrar
 const getCarts = async (req = request, res = response) => {
@@ -12,10 +15,17 @@ const getCarts = async (req = request, res = response) => {
       data
     })
   } catch (error) {
-    res.status(400).json({
-      msg: error,
-      data: []
-    })
+    if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException) || (error instanceof InvalidUserIdException)) {
+      res.status(400).json({
+        msg: error,
+        data: []
+      })
+    } else {
+      res.status(500).json({
+        msg: 'Internal Server Error',
+        data: []
+      })
+    }
   }
 }
 
@@ -30,10 +40,17 @@ const getCartById = async (req = request, res = response) => {
       data
     })
   } catch (error) {
-    res.status(400).json({
-      msg: error,
-      data: []
-    })
+    if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException)) {
+      res.status(400).json({
+        msg: error,
+        data: []
+      })
+    } else {
+      res.status(500).json({
+        msg: 'Internal Server Error',
+        data: []
+      })
+    }
   }
 }
 
