@@ -14,7 +14,7 @@ const paginador = (url, data, page, limit = 10) => {
     } else if (page === undefined || page === null) {
       info = {
         count,
-        pages: 1,
+        pages,
         next: `${url}?page=2&limit=${limit}`,
         prev: null
       }
