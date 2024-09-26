@@ -30,7 +30,7 @@ const getUsers = async (req = request, res = response) => {
       data
     })
   } catch (error) {
-      res.status(400).json({
+    res.status(400).json({
       msg: error.message,
       data: []
     })

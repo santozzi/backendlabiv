@@ -36,8 +36,6 @@ const getUsersModel = async (page, limit, nombre) => {
           if (nombre === undefined || nombre === null) {
             result = await paginador(host, data, page, limit)
           } else {
-           
-
             const filtrado = data.filter((usuario) => (usuario.name).includes(nombre))
 
             result = await paginador(host, filtrado, page, limit)
