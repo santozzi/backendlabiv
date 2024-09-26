@@ -1,6 +1,7 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
 import { paginador } from '../utils/paginador.js'
+import { InvalidPriceException } from '../exceptions/InvalidPriceException.js'
 
 dotenv.config()
 const tipo = 'products'
@@ -8,15 +9,27 @@ const url = process.env.URL_API + tipo
 
 const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
 
-const getProductsModel = async (page, limit) => {
+const getProductsModel = async (minPrice, maxPrice, page, limit) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url)
       .then(async (response) => {
-        console.log('page: ', page, ' limit: ', limit, response.data)
 
-        const result = await paginador(host, response.data, page, limit)
-        resolve(result)
+        try {
+          let result
+          const { data } = response
+          if ((minPrice === undefined || minPrice === null) && (maxPrice === undefined || maxPrice === null)) {
+            result = await paginador(host, data, page, limit)
+          } else {
+            const filtrado = data.filter((product) => {
+              return product.price >= minPrice && product.price <= maxPrice
+            })
+            result = await paginador(host, filtrado, page, limit)
+          }
+          resolve(result)
+        } catch (error) {
+          reject(error)
+        }
       })
       .catch((error) => {
         reject(error.message)
