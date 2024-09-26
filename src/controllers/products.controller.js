@@ -5,8 +5,8 @@ import { getProductByIdModel, getProductsModel } from '../models/products.model.
 const getProducts = async (req = request, res = response) => {
   // verificar si logro traer los productos
   try {
-    const { page, limit } = req.query
-    const data = await getProductsModel(page, limit)
+    const {minPrice, maxPrice, page, limit } = req.query
+    const data = await getProductsModel(minPrice, maxPrice, page, limit)
 
     res.status(200).json({
       msg: 'Ok',
