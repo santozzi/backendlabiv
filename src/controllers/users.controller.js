@@ -22,15 +22,15 @@ const getUsers = async (req = request, res = response) => {
   // TODO: verificar si el body es un usuario
 
   try {
-    const { page, limit } = req.query
-    const data = await getUsersModel(page, limit)
+    const { page, limit, nombre } = req.query
+    const data = await getUsersModel(page, limit, nombre)
 
     res.status(200).json({
       msg: 'Ok',
       data
     })
   } catch (error) {
-    res.status(400).json({
+      res.status(400).json({
       msg: error.message,
       data: []
     })
