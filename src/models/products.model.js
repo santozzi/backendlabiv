@@ -21,10 +21,20 @@ const getProductsModel = async (minPrice, maxPrice, page, limit) => {
           if ((minPrice === undefined || minPrice === null) && (maxPrice === undefined || maxPrice === null)) {
             result = await paginador(host, data, page, limit)
           } else {
-            const filtrado = data.filter((product) => {
-              return product.price >= minPrice && product.price <= maxPrice
-            })
-            result = await paginador(host, filtrado, page, limit)
+            if (isNaN(minPrice) || isNaN(maxPrice)) {
+              throw new InvalidPriceException('Los precios deben ser números')
+            } else if (Number(minPrice)  < 0 || Number(maxPrice) < 0) {
+              throw new InvalidPriceException('Los precios deben ser mayores o iguales a 0')
+            } else if (Number(minPrice) > Number(maxPrice)) {
+              throw new InvalidPriceException('El precio mínimo debe ser menor o igual al precio máximo')
+            } else {
+              const filtrado = data.filter((product) => {
+                return product.price >= minPrice && product.price <= maxPrice
+              })
+            
+            const filtro = `&minPrice=${minPrice}&maxPrice=${maxPrice}`
+            result = await paginador(host, filtrado, page, limit, filtro)
+            }
           }
           resolve(result)
         } catch (error) {
