@@ -1,12 +1,14 @@
 import axios from 'axios'
 import dotenv from 'dotenv'
 import { paginador } from '../utils/paginador.js'
+import { InvalidUserIdException } from '../exceptions/InvalidUserIdException.js'
 
 dotenv.config()
 const tipo = 'users'
 const url = process.env.URL_API + tipo
 
-const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+const host =
+  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
 
 const getUserByIdModel = async (id) => {
   return new Promise((resolve, reject) => {
@@ -20,7 +22,10 @@ const getUserByIdModel = async (id) => {
         resolve(data)
       })
       .catch((error) => {
-        reject(error.message)
+        if (error.response.data.message.includes('Could not find any entity of type "User"')) {
+          reject(new InvalidUserIdException('El usuario no existe'))
+        }
+        reject(error)
       })
   })
 }
@@ -36,7 +41,9 @@ const getUsersModel = async (page, limit, nombre) => {
           if (nombre === undefined || nombre === null) {
             result = await paginador(host, data, page, limit)
           } else {
-            const filtrado = data.filter((usuario) => (usuario.name).includes(nombre))
+            const filtrado = data.filter((usuario) => usuario.name.toLowerCase().includes(nombre.toLowerCase())
+            )
+            console.log(filtrado)
 
             result = await paginador(host, filtrado, page, limit)
           }
@@ -47,7 +54,7 @@ const getUsersModel = async (page, limit, nombre) => {
         }
       })
       .catch((error) => {
-        reject(error.message)
+        reject(error)
       })
   })
 }

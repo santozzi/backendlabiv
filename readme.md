@@ -18,6 +18,7 @@ Una breve descripción de lo que hace tu proyecto y por qué es útil. Incluye u
 - [Uso](#uso)
 - [Contribución](#contribución)
 
+
 ## Descripción
 
 Esta API proporciona acceso a los datos esenciales para la gestión de un carrito de compras en una tienda en línea. Su propósito es facilitar la comunicación entre el frontend de la aplicación (interfaz de usuario) y el backend (servidor y base de datos), permitiendo la gestión eficiente de productos, categorías, usuarios y el carrito de compras.
@@ -36,11 +37,12 @@ La siguiente es una lista de los principales endpoints disponibles en esta API, 
 ### 1. **Productos**
 Maneja la obtención y gestión de los productos disponibles en la tienda.
 
-| Método | Endpoint          | Descripción                                    |
-|--------|-----------------------------------|------------------------------------------------|
-| `GET`  | `/products`                       | Obtener la lista de todos los productos.       |
-| `GET`  | `/products/{id}`| Obtener los detalles de un producto por ID.    |
-| `GET`  | `/products?page=1&limit=10` | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) |
+| Método | Endpoint                            | Descripción                                                                               |
+|--------|-------------------------------------|-------------------------------------------------------------------------------------------|
+| `GET`  | `/products`                         | Obtener la lista de todos los productos. Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/products)                                                 |
+| `GET`  | `/products/{id}`                    | Obtener los detalles de un producto por ID. Ej:  [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/products/2)                                              |
+| `GET`  | `/products?page={page}&limit={limit}`         | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/products/?page=1) |
+| `GET`  | `/products?minPrice={min}&maxPrice={max}` | Obtiene una lista de productos cuyo precio este en el rango de los parametros de busqueda [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/products?minPrice=20&maxPrice=30)|
 
 
 ### 2. **Categorías**
@@ -48,9 +50,9 @@ Consulta y administra las categorías de los productos.
 
 | Método | Endpoint           | Descripción                                      |
 |--------|--------------------|--------------------------------------------------|
-| `GET`  | `/categories`       | Obtener la lista de todas las categorías.        |
-| `GET`  | `/categories/{id}`  | Obtener los productos de una categoría por ID.   |
-| `GET`  | `/categories?page=1&limit=10` | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) |
+| `GET`  | `/categories`       | Obtener la lista de todas las categorías.   Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories)     |
+| `GET`  | `/categories/{id}`  | Obtener los productos de una categoría por ID.   [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/1)|
+| `GET`  | `/categories?page=1&limit=10` | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/?page=1)|
 
 ### 3. **Usuarios**
 Endpoints para la gestión de usuarios y autenticación.
@@ -59,8 +61,8 @@ Endpoints para la gestión de usuarios y autenticación.
 |---------|----------------------|--------------------------------------------|
 | `GET`   | `/users/`      | Obtener la lista de usuarios|
 | `GET`   | `/users/{id}`      | Obtener la información de un usuario por ID.|
-| `GET`   | `/users/?page=1&limit=10`      | Obtiene la lista de todos los usuarios por cantidad de páginas según limite (paginación)|
-
+| `GET`   | `/users/?page={pagina}&limit={limite}`      | Obtiene la lista de todos los usuarios por cantidad de páginas según limite (paginación)|
+| `GET`   | `/users/?nombre={nombre}`      | Obtiene la lista de todos los usuarios que contengan el nombre {nombre}|
 
 ### 4. **Carrito de Compras**
 Gestión del carrito de compras de los usuarios.
