@@ -14,7 +14,7 @@ const getProducts = async (req = request, res = response) => {
     })
   } catch (error) {
     res.status(400).json({
-      msg: error,
+      msg: error.message,
       data: []
     })
   }
@@ -33,7 +33,7 @@ const getProductById = async (req = request, res = response) => {
     })
   } catch (error) {
     res.status(400).json({
-      msg: error,
+      msg: error.message,
       data: []
     })
   }
