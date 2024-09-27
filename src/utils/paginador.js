@@ -1,6 +1,6 @@
 import { InvalidNumberPageException } from '../exceptions/InvalidNumberPageException.js'
 import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
-const paginador = (url, data, page, limit = 10) => {
+const paginador = (url, data, page, limit = 10, filtro='') => {
   return new Promise((resolve, reject) => {
     const count = data.length
     const pages = Math.ceil(count / limit)
@@ -14,13 +14,19 @@ const paginador = (url, data, page, limit = 10) => {
     } else if (page === undefined || page === null) {
       info = {
         count,
-        pages: 1,
-        next: null,
+        pages,
+        next: `${url}?page=2&limit=${limit}${filtro}`,
         prev: null
       }
+      const inicio = 0
+      let fin = 1 * limit
+      if (pages === 1) {
+        fin = count - 1
+      }
+      const results = data.slice(inicio, fin)
       result = {
         info,
-        results: data
+        results
       }
     } else if (isNaN(page)) {
       reject(new InvalidNumberPageException('La página debe ser un número'))
@@ -33,10 +39,10 @@ const paginador = (url, data, page, limit = 10) => {
         count,
         pages,
         next:
-          pages !== page
-            ? `${url}?page=${Number(page) + 1}&limit=${limit}`
+          pages > page
+            ? `${url}?page=${Number(page) + 1}&limit=${limit}${filtro}`
             : null,
-        prev: page > 1 ? `${url}?page=${page - 1}&limit=${limit}` : null
+        prev: page > 1 ? `${url}?page=${page - 1}&limit=${limit}${filtro}` : null
       }
 
       const inicio = (page - 1) * limit
