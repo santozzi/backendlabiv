@@ -1,7 +1,13 @@
 import { InvalidNumberPageException } from '../exceptions/InvalidNumberPageException.js'
 import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
-const paginador = (url, data, page, limit = 10, filtro='') => {
+const paginador = (url, data, page, limit, filtro = '') => {
   return new Promise((resolve, reject) => {
+    if ((page === undefined || page === null) && (limit !== undefined)) {
+      page = 1
+    }
+    if (limit === undefined) {
+      limit = 10
+    }
     const count = data.length
     const pages = Math.ceil(count / limit)
     let info
