@@ -44,7 +44,7 @@ const getUsersModel = async (page, limit, nombre) => {
             const filtrado = data.filter((usuario) =>
               usuario.name.includes(nombre)
             )
-             result = await paginador(host, filtrado, page, limit)
+            result = await paginador(host, filtrado, page, limit)
           }
 
           resolve(result)
