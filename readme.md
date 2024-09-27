@@ -60,8 +60,8 @@ Endpoints para la gestión de usuarios y autenticación.
 |---------|----------------------|--------------------------------------------|
 | `GET`   | `/users/`      | Obtener la lista de usuarios|
 | `GET`   | `/users/{id}`      | Obtener la información de un usuario por ID.|
-| `GET`   | `/users/?page=1&limit=10`      | Obtiene la lista de todos los usuarios por cantidad de páginas según limite (paginación)|
-
+| `GET`   | `/users/?page={pagina}&limit={limite}`      | Obtiene la lista de todos los usuarios por cantidad de páginas según limite (paginación)|
+| `GET`   | `/users/?nombre={nombre}`      | Obtiene la lista de todos los usuarios que contengan el nombre {nombre}|
 
 ### 4. **Carrito de Compras**
 Gestión del carrito de compras de los usuarios.

@@ -12,7 +12,8 @@ const paginador = (url, data, page, limit, filtro = '') => {
     const pages = Math.ceil(count / limit)
     let info
     let result
-
+    console.log("paginador ",data);
+    
     if (isNaN(limit)) {
       reject(new InvalidNumberLimitException('El límite debe ser un número'))
     } else if (limit <= 0) {
@@ -21,18 +22,14 @@ const paginador = (url, data, page, limit, filtro = '') => {
       info = {
         count,
         pages,
-        next: `${url}?page=2&limit=${limit}${filtro}`,
+        next: null,
         prev: null
       }
-      const inicio = 0
-      let fin = 1 * limit
-      if (pages === 1) {
-        fin = count - 1
-      }
-      const results = data.slice(inicio, fin)
+
+ 
       result = {
         info,
-        results
+        data
       }
     } else if (isNaN(page)) {
       reject(new InvalidNumberPageException('La página debe ser un número'))
