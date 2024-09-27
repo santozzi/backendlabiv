@@ -1,6 +1,8 @@
 import { request, response } from 'express'
 import { getCategoryByIdModel, getCategoriesModel } from '../models/categories.model.js'
+import { InvalidUserIdException } from '../exceptions/InvalidUserIdException.js'
 import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
+import { InvalidNumberPageException } from '../exceptions/InvalidNumberPageException.js'
 
 // devuelve un listado de categorias, sin filtrar
 const getCategories = async (req = request, res = response) => {
