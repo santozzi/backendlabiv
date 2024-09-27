@@ -22,11 +22,8 @@ const getUserByIdModel = async (id) => {
         resolve(data)
       })
       .catch((error) => {
-        if (
-          error.response.data.message.includes('Could not find any entity of type "User"')
-
-        ) {
-          reject(new InvalidUserIdException('El usuario no existe', 400))
+        if (error.response.data.message.includes('Could not find any entity of type "User"')) {
+          reject(new InvalidUserIdException('El usuario no existe'))
         }
         reject(error.message)
       })
