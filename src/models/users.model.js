@@ -25,7 +25,7 @@ const getUserByIdModel = async (id) => {
         if (error.response.data.message.includes('Could not find any entity of type "User"')) {
           reject(new InvalidUserIdException('El usuario no existe'))
         }
-        reject(error.message)
+        reject(error)
       })
   })
 }
@@ -44,8 +44,7 @@ const getUsersModel = async (page, limit, nombre) => {
             const filtrado = data.filter((usuario) =>
               usuario.name.includes(nombre)
             )
-
-            result = await paginador(host, filtrado, page, limit)
+             result = await paginador(host, filtrado, page, limit)
           }
 
           resolve(result)
@@ -54,7 +53,7 @@ const getUsersModel = async (page, limit, nombre) => {
         }
       })
       .catch((error) => {
-        reject(error.message)
+        reject(error)
       })
   })
 }
