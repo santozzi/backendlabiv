@@ -25,13 +25,22 @@ const getUserByIdModel = async (id) => {
   })
 }
 
-const getUsersModel = async (page, limit) => {
+const getUsersModel = async (page, limit, nombre) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url)
       .then(async (response) => {
         try {
-          const result = await paginador(host, response.data, page, limit)
+          let result
+          const { data } = response
+          if (nombre === undefined || nombre === null) {
+            result = await paginador(host, data, page, limit)
+          } else {
+            const filtrado = data.filter((usuario) => (usuario.name).includes(nombre))
+
+            result = await paginador(host, filtrado, page, limit)
+          }
+
           resolve(result)
         } catch (error) {
           reject(error)

@@ -21,9 +21,9 @@ const getCategories = async (req = request, res = response) => {
 
 // devuelve una categoria por nombre
 const getCategoryById = async (req = request, res = response) => {
-  const { name } = req.params
+  const { id } = req.params
   try {
-    const data = await getCategoryByIdModel(name)
+    const data = await getCategoryByIdModel(id)
 
     res.status(200).json({
       msg: 'Ok',
