@@ -36,11 +36,12 @@ La siguiente es una lista de los principales endpoints disponibles en esta API, 
 ### 1. **Productos**
 Maneja la obtención y gestión de los productos disponibles en la tienda.
 
-| Método | Endpoint          | Descripción                                    |
-|--------|-----------------------------------|------------------------------------------------|
-| `GET`  | `/products`                       | Obtener la lista de todos los productos.       |
-| `GET`  | `/products/{id}`| Obtener los detalles de un producto por ID.    |
-| `GET`  | `/products?page=1&limit=10` | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) |
+| Método | Endpoint                            | Descripción                                                                               |
+|--------|-------------------------------------|-------------------------------------------------------------------------------------------|
+| `GET`  | `/products`                         | Obtener la lista de todos los productos.                                                  |
+| `GET`  | `/products/{id}`                    | Obtener los detalles de un producto por ID.                                               |
+| `GET`  | `/products?page=1&limit=10`         | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) |
+| `GET`  | `/products?minPrice=20&maxPrice=30` | Obtiene una lista de productos cuyo precio este en el rango de los parametros de busqueda |
 
 
 ### 2. **Categorías**
@@ -67,9 +68,11 @@ Gestión del carrito de compras de los usuarios.
 
 | Método  | Endpoint                | Descripción                                        |
 |---------|-------------------------|----------------------------------------------------|
-| `GET`   | `/carrito`               | Obtener el contenido del carrito de compras actual.|
-| `POST`  | `/carrito`               | Agregar un producto al carrito de compras.         |
-| `DELETE`| `/carrito/{id}`          | Eliminar un producto del carrito.                  |
+| `GET`   | `/carrito`               | Obtener la lista de todos los carritos.|
+| `GET`   | `/carrito/{id}`              | Obtener el contenido del carrito de compras actual.|
+| `GET`   | `/carrito/?page=1&limit=10`      | Obtiene la lista de todos los carritos por cantidad de páginas según limite (paginación)|
+| `GET`   | `/carrito/?userId=1`      | Obtiene la lista de todos los carritos pertenecientes al userId brindado|
+
 
 ## Tecnologías
 
