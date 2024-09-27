@@ -1,21 +1,29 @@
 import { request, response } from 'express'
 import { getCategoryByIdModel, getCategoriesModel } from '../models/categories.model.js'
+import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
 
 // devuelve un listado de categorias, sin filtrar
 const getCategories = async (req = request, res = response) => {
   try {
-    const { page, limit } = req.query
-    const data = await getCategoriesModel(page, limit)
+    const { page, limit, nombre } = req.query
+    const data = await getCategoriesModel(page, limit, nombre)
 
     res.status(200).json({
       msg: 'Ok',
       data
     })
   } catch (error) {
-    res.status(400).json({
-      msg: error,
-      data: []
-    })
+    if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException) || (error instanceof InvalidUserIdException)) {
+      res.status(400).json({
+        msg: error,
+        data: []
+      })
+    } else {
+      res.status(500).json({
+        msg: 'Internal Server Error',
+        data: []
+      })
+    }
   }
 }
 
@@ -30,10 +38,17 @@ const getCategoryById = async (req = request, res = response) => {
       data
     })
   } catch (error) {
-    res.status(400).json({
-      msg: error,
-      data: []
-    })
+    if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException)) {
+      res.status(400).json({
+        msg: error,
+        data: []
+      })
+    } else {
+      res.status(500).json({
+        msg: 'Internal Server Error',
+        data: []
+      })
+    }
   }
 }
 
