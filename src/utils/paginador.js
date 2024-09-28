@@ -12,7 +12,6 @@ const paginador = (url, data, page, limit, filtro = '') => {
     const pages = Math.ceil(count / limit)
     let info
     let result
-    
 
     if (isNaN(limit)) {
       reject(new InvalidNumberLimitException('El límite debe ser un número'))
