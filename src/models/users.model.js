@@ -6,9 +6,12 @@ import { InvalidUserIdException } from '../exceptions/InvalidUserIdException.js'
 dotenv.config()
 const tipo = 'users'
 const url = process.env.URL_API + tipo
-
+let port = ':' + process.env.PORT
+if (process.env.PORT === undefined) {
+  port = ''
+}
 const host =
-  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+  process.env.HOST + port + '/api/v1/' + tipo + '/'
 
 const getUserByIdModel = async (id) => {
   return new Promise((resolve, reject) => {
