@@ -7,7 +7,12 @@ dotenv.config()
 const tipo = 'carts'
 const url = process.env.URL_API_CARRITO + tipo
 
-const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+let port = ':' + process.env.PORT
+if (process.env.PORT === undefined){
+  port = ''
+}
+
+const host = process.env.HOST + port + '/api/v1/' + tipo + '/'
 
 const getCartsModel = async (userId, page, limit) => {
   return new Promise((resolve, reject) => {
