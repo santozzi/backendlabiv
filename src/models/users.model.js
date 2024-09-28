@@ -11,7 +11,6 @@ if (process.env.PORT === undefined) { port = '' }
 const host =
   process.env.HOST + port + '/api/v1/' + tipo + '/'
 
-
 const getUserByIdModel = async (id) => {
   return new Promise((resolve, reject) => {
     axios({
