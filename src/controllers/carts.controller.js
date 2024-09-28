@@ -17,7 +17,7 @@ const getCarts = async (req = request, res = response) => {
   } catch (error) {
     if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException) || (error instanceof InvalidUserIdException)) {
       res.status(400).json({
-        msg: error,
+        msg: error.message,
         data: []
       })
     } else {
@@ -42,7 +42,7 @@ const getCartById = async (req = request, res = response) => {
   } catch (error) {
     if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException)) {
       res.status(400).json({
-        msg: error,
+        msg: error.message,
         data: []
       })
     } else {
