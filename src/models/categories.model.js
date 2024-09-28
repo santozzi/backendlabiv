@@ -6,7 +6,12 @@ dotenv.config()
 const tipo = 'categories'
 const url = process.env.URL_API + tipo
 
-const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+let port = ':' + process.env.PORT
+if(process.env.PORT===undefined){
+  port = ""
+}
+
+const host = process.env.HOST + port + '/api/v1/' + tipo + '/'
 
 const getCategoriesModel = async (page, limit, nombre) => {
   return new Promise((resolve, reject) => {

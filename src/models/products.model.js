@@ -7,7 +7,11 @@ dotenv.config()
 const tipo = 'products'
 const url = process.env.URL_API + tipo
 
-const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+let port = ':' + process.env.PORT
+if (process.env.port === undefined) {
+  port = ''
+}
+const host = process.env.HOST + port + '/api/v1/' + tipo + '/'
 
 const getProductsModel = async (minPrice, maxPrice, page, limit) => {
   return new Promise((resolve, reject) => {
