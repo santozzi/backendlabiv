@@ -8,7 +8,10 @@ const tipo = 'users'
 const url = process.env.URL_API + tipo
 
 const host =
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
    '/api/v1/' + tipo + '/'
 
 const getUserByIdModel = async (id) => {
