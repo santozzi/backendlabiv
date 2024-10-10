@@ -8,7 +8,7 @@ const tipo = 'users'
 const url = process.env.URL_API + tipo
 
 const host =
-  process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+   '/api/v1/' + tipo + '/'
 
 const getUserByIdModel = async (id) => {
   return new Promise((resolve, reject) => {
