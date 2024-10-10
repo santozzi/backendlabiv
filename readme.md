@@ -32,7 +32,7 @@ Esta API proporciona acceso a los datos esenciales para la gestión de un carrit
 * Procesamiento de pagos: Integra funcionalidades para procesar pagos, verificar el estado de las transacciones y gestionar el historial de compras. (en desarrollo)
 
 ## Endpoints
-La siguiente es una lista de los principales endpoints disponibles en esta API, organizados por funcionalidad.
+La siguiente es una lista de los principales endpoints disponibles en esta API, todos parten de /api/v1/
 
 ### 1. **Productos**
 Maneja la obtención y gestión de los productos disponibles en la tienda.
@@ -51,28 +51,28 @@ Consulta y administra las categorías de los productos.
 | Método | Endpoint           | Descripción                                      |
 |--------|--------------------|--------------------------------------------------|
 | `GET`  | `/categories`       | Obtener la lista de todas las categorías.   Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories)     |
-| `GET`  | `/categories/{id}`  | Obtener los productos de una categoría por ID.   [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/1)|
-| `GET`  | `/categories?page=1&limit=10` | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/?page=1)|
+| `GET`  | `/categories/{id}`  | Obtener los productos de una categoría por ID. Ej:  [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/1)|
+| `GET`  | `/categories?page=1&limit=10` | Obtiene la lista de todos los productos por cantidad de páginas según limite (paginación) Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/?page=1)|
 
 ### 3. **Usuarios**
 Endpoints para la gestión de usuarios y autenticación.
 
 | Método  | Endpoint             | Descripción                                |
 |---------|----------------------|--------------------------------------------|
-| `GET`   | `/users/`      | Obtener la lista de usuarios|
-| `GET`   | `/users/{id}`      | Obtener la información de un usuario por ID.|
-| `GET`   | `/users/?page={pagina}&limit={limite}`      | Obtiene la lista de todos los usuarios por cantidad de páginas según limite (paginación)|
-| `GET`   | `/users/?nombre={nombre}`      | Obtiene la lista de todos los usuarios que contengan el nombre {nombre}|
+| `GET`   | `/users/`      | Obtener la lista de usuarios Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/users)|
+| `GET`   | `/users/{id}`      | Obtener la información de un usuario por ID.Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/users/2)|
+| `GET`   | `/users/?page={pagina}&limit={limite}`      | Obtiene la lista de todos los usuarios por cantidad de páginas según limite (paginación) Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/users/?page=1)|
+| `GET`   | `/users/?nombre={nombre}`      | Obtiene la lista de todos los usuarios que contengan el nombre {nombre} Ej: [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/categories/?nombre=Maria)|
 
 ### 4. **Carrito de Compras**
 Gestión del carrito de compras de los usuarios.
 
 | Método  | Endpoint                | Descripción                                        |
 |---------|-------------------------|----------------------------------------------------|
-| `GET`   | `/carrito`               | Obtener la lista de todos los carritos.|
-| `GET`   | `/carrito/{id}`              | Obtener el contenido del carrito de compras actual.|
-| `GET`   | `/carrito/?page=1&limit=10`      | Obtiene la lista de todos los carritos por cantidad de páginas según limite (paginación)|
-| `GET`   | `/carrito/?userId=1`      | Obtiene la lista de todos los carritos pertenecientes al userId brindado|
+| `GET`   | `/carts`               | Obtener la lista de todos los carritos. [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/carts)|
+| `GET`   | `/carts/{id}`              | Obtener el contenido del carrito de compras actual. [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/carts/1)|
+| `GET`   | `/carts/?page=1&limit=10`      | Obtiene la lista de todos los carritos por cantidad de páginas según limite (paginación) [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/carts?page=1)|
+| `GET`   | `/carts/?userId=1`      | Obtiene la lista de todos los carritos pertenecientes al userId brindado [aquí](https://backendlabiv-s4q1.onrender.com/api/v1/carts/?userId=1)|
 
 
 ## Tecnologías
