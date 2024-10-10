@@ -6,6 +6,7 @@ import { InvalidUserIdException } from '../exceptions/InvalidUserIdException.js'
 
 const getUserById = async (req = request, res = response) => {
   const { id } = req.params
+  //comentario
 
   try {
     const data = await getUserByIdModel(id)
