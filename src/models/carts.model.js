@@ -7,7 +7,7 @@ dotenv.config()
 const tipo = 'carts'
 const url = process.env.URL_API_CARRITO + tipo
 
-const host = process.env.HOST + ':' + process.env.PORT + '/api/v1/' + tipo + '/'
+const host = '/api/v1/' + tipo + '/'
 
 const getCartsModel = async (userId, page, limit) => {
   return new Promise((resolve, reject) => {
@@ -15,8 +15,6 @@ const getCartsModel = async (userId, page, limit) => {
       axios
         .get(url)
         .then(async (response) => {
-          console.log('userId: ', userId, 'page: ', page, 'limit: ', limit, response.data)
-
           const result = await paginador(host, response.data, page, limit)
           resolve(result)
         })
@@ -33,8 +31,6 @@ const getCartsModel = async (userId, page, limit) => {
         url: `${url}/user/${userId}`
       })
         .then(async (response) => {
-          console.log('page: ', page, 'limit: ', limit, response.data)
-
           const result = await paginador(host, response.data, page, limit)
           resolve(result)
         })

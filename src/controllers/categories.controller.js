@@ -1,6 +1,5 @@
 import { request, response } from 'express'
 import { getCategoryByIdModel, getCategoriesModel } from '../models/categories.model.js'
-import { InvalidUserIdException } from '../exceptions/InvalidUserIdException.js'
 import { InvalidNumberLimitException } from '../exceptions/InvalidNumberLimitException.js'
 import { InvalidNumberPageException } from '../exceptions/InvalidNumberPageException.js'
 
@@ -15,9 +14,9 @@ const getCategories = async (req = request, res = response) => {
       data
     })
   } catch (error) {
-    if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException) || (error instanceof InvalidUserIdException)) {
+    if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException)) {
       res.status(400).json({
-        msg: error,
+        msg: error.message,
         data: []
       })
     } else {
@@ -42,7 +41,7 @@ const getCategoryById = async (req = request, res = response) => {
   } catch (error) {
     if ((error instanceof InvalidNumberLimitException) || (error instanceof InvalidNumberPageException)) {
       res.status(400).json({
-        msg: error,
+        msg: error.message,
         data: []
       })
     } else {
